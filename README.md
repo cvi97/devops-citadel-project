@@ -58,3 +58,11 @@ Esta configuración intenta asegurar que los pods se programen preferiblemente e
 
 ## Challenge 2 
 ### You need to implement the reusable module. It should pass validations provided by the terraform fmt and terraform validate commands
+Se adjunta una carpeta con tres ficheros:
+my-terraform-module/ 
+│-- main.tf
+│-- variables.tf
+│-- outputs.tf (opcional)
+El archivo variables.tf contiene todas las variables que se utilizarán en el módulo. Aquí es donde se definen las variables como el servidor ACR, la suscripción, las credenciales y otros detalles necesarios para la operación.
+El archivo main.tf contiene la lógica principal para copiar los charts del ACR de origen al ACR de destino y luego instalarlos en el clúster AKS usando Helm.
+El archivo outputs.tf define el mensaje que emite terraform cuando termina de ejecutarse, en este caso el nombre de los Helm Chart instalados.
