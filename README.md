@@ -76,7 +76,7 @@ Este archivo, aunque opcional, define el mensaje que emite Terraform cuando term
 #### Un ejemplo de como referenciar este módulo para usarlo
 ```hcl
 module "chart" {
-  source = "./my-terraform-module"  # Update with the actual path to your module or source repository
+  source = "./my-terraform-module"  # Path del modulo
 
   acr_server = "instance.azurecr.io"
   acr_server_subscription = "c9e7611c-d508-4fbf-aede-0bedfabc1560"
@@ -85,7 +85,25 @@ module "chart" {
   source_acr_server = "reference.azurecr.io"
   
   charts = [
-    # Add your charts here
+    # Charts a instalar
   ]
 }
 ```
+
+## Changer 3
+### Create a Github workflow to allow installing helm chart from Challenge #1 using module from Challenge #2, into an AKS cluster (considering a preexisting resource group and cluster name)
+
+
+La pipeline necesitará hacer lo siguiente:
+
+1. **Chequear el código fuente del repositorio:** Asegurarse de que el código fuente esté actualizado y listo para ser desplegado.
+
+2. **Configurar un ambiente de ejecución con Terraform y kubectl:** Preparar el entorno donde se ejecutará Terraform y kubectl para gestionar los recursos de Kubernetes y Azure.
+
+3. **Configurar la autenticación con Azure:** Establecer las credenciales y permisos necesarios para interactuar con los recursos de Azure.
+
+4. **Inicializar Terraform:** Preparar Terraform para la ejecución, inicializando los plugins y módulos necesarios.
+
+5. **Aplicar la configuración de Terraform para instalar el Helm chart en tu clúster AKS:** Ejecutar Terraform apply para desplegar los recursos definidos en los archivos de configuración de Terraform.
+
+Al igual que en las pruebas anteriores, adjunto el fichero YAML “deploy-helm-chart.yml” con un ejemplo de cómo pueden realizarse los pasos necesarios de Github Workflow.
