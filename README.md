@@ -57,3 +57,4 @@ La configuración asegura que los pods que tienen la misma etiqueta "app" con un
 Esta configuración intenta asegurar que los pods se programen preferiblemente en nodos que estén en diferentes zonas de disponibilidad, pero que ya tengan al menos un pod de la misma aplicación (basado en la etiqueta "app"). Esto ayuda a distribuir la carga y aumentar la disponibilidad de la aplicación en caso de fallo de una zona.
 
 ## Challenge 2 
+### You need to implement the reusable module. It should pass validations provided by the terraform fmt and terraform validate commands
