@@ -59,11 +59,12 @@ Esta configuración intenta asegurar que los pods se programen preferiblemente e
 ## Challenge 2 
 ### You need to implement the reusable module. It should pass validations provided by the terraform fmt and terraform validate commands
 Se adjunta una carpeta con tres ficheros:
-### `my-terraform-module/`
+#### `my-terraform-module/`
 ```plaintext
 │-- main.tf
 │-- variables.tf
 │-- outputs.tf (opcional)
+```
 
 #### `variables.tf`
 Este archivo contiene todas las variables que se utilizarán en el módulo. Aquí es donde se definen las variables como el servidor ACR, la suscripción, las credenciales y otros detalles necesarios para la operación.
