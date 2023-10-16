@@ -1,0 +1,37 @@
+name: Deploy Helm Chart to AKS
+
+on:
+  push:
+    branches:
+      - main  # La rama que activará la pipeline cuando sifra un cambio
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+    
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}  # Recupera el secreto de Github
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve  # Es necesairo usar la flag --auto-approve al no ser un entorno interactivo. 
+
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v1
+    
+    - name: Get AKS Credentials
+      run: az aks get-credentials --resource-group ResourceGroupName --name NombreCluster  # Grupo de recursos y cluster inventados
+
+    - name: Verify Deployment
+      run: kubectl get all -n namespaceExistente  # Namespace inventado
