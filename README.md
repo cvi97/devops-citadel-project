@@ -63,6 +63,29 @@ my-terraform-module/
 │-- main.tf
 │-- variables.tf
 │-- outputs.tf (opcional)
-El archivo variables.tf contiene todas las variables que se utilizarán en el módulo. Aquí es donde se definen las variables como el servidor ACR, la suscripción, las credenciales y otros detalles necesarios para la operación.
-El archivo main.tf contiene la lógica principal para copiar los charts del ACR de origen al ACR de destino y luego instalarlos en el clúster AKS usando Helm.
-El archivo outputs.tf define el mensaje que emite terraform cuando termina de ejecutarse, en este caso el nombre de los Helm Chart instalados.
+
+#### `variables.tf`
+Este archivo contiene todas las variables que se utilizarán en el módulo. Aquí es donde se definen las variables como el servidor ACR, la suscripción, las credenciales y otros detalles necesarios para la operación.
+
+#### `main.tf`
+Este archivo contiene la lógica principal para copiar los charts del ACR de origen al ACR de destino y luego instalarlos en el clúster AKS usando Helm.
+
+#### `outputs.tf`
+Este archivo, aunque opcional, define el mensaje que emite Terraform cuando termina de ejecutarse, en este caso el nombre de los Helm Chart instalados.
+
+#### Un ejemplo de como referenciar este módulo para usarlo
+```hcl
+module "chart" {
+  source = "./my-terraform-module"  # Update with the actual path to your module or source repository
+
+  acr_server = "instance.azurecr.io"
+  acr_server_subscription = "c9e7611c-d508-4fbf-aede-0bedfabc1560"
+  source_acr_client_id = "1b2f651e-b99c-4720-9ff1-ede324b8ae30"
+  source_acr_client_secret = "Zrrr8~5~F2Xiaaaa7eS.S85SXXAAfTYizZEF1cRp"
+  source_acr_server = "reference.azurecr.io"
+  
+  charts = [
+    # Add your charts here
+  ]
+}
+```
