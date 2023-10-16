@@ -15,7 +15,10 @@ affinity:
             values:
             - {{ .Values.nodeAffinity.value }}
 ```
-
+Se pueden añadir las condiciones siguientes para que solo tenga en cuenta el bloque affinity si están definidos los valores:
+```yaml
+{{- if and .Values.nodeAffinity.key .Values.nodeAffinity.value }}
+```
 
 ```yaml
 ## En values.yaml:
