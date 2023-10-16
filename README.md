@@ -38,3 +38,22 @@ nodeAffinity:
           values:
           - {{ include "ping.fullname" . }}
       topologyKey: "kubernetes.io/hostname"
+```
+La configuración asegura que los pods que tienen la misma etiqueta "app" con un valor que coincide con el nombre completo del release de Helm no se programarán en el mismo nodo. Esto es útil para garantizar que los pods se distribuyan entre diferentes nodos para mejorar la disponibilidad y la tolerancia a fallos de la aplicación.
+
+### Pods are deployed across different availability zones
+```yaml
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - {{ include "ping.fullname" . }}
+          topologyKey: "failure-domain.beta.kubernetes.io/zone"
+```
+Esta configuración intenta asegurar que los pods se programen preferiblemente en nodos que estén en diferentes zonas de disponibilidad, pero que ya tengan al menos un pod de la misma aplicación (basado en la etiqueta "app"). Esto ayuda a distribuir la carga y aumentar la disponibilidad de la aplicación en caso de fallo de una zona.
+
+## Challenge 2 
