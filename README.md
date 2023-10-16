@@ -16,10 +16,10 @@ affinity:
             - {{ .Values.nodeAffinity.value }}
 ```
 
-##Como no tenía claro a qué grupo de nodos se refiere, añado este apartado en la template “deployment.yaml”, para poder añadir en “values.yaml” el grupo de nodos a evitar.
+Como no tenía claro a qué grupo de nodos se refiere, añado este apartado en la template “deployment.yaml”, para poder añadir en “values.yaml” el grupo de nodos a evitar.
 ## En values.yaml:
-  nodeAffinity:
-    key: "nombreDeLaEtiqueta"
-    value: "valorDeLaEtiqueta"
+nodeAffinity:
+  key: "nombreDeLaEtiqueta"
+  value: "valorDeLaEtiqueta"
 
 
