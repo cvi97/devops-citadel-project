@@ -90,7 +90,7 @@ module "chart" {
 }
 ```
 
-## Changer 3
+## Challenge 3
 ### Create a Github workflow to allow installing helm chart from Challenge #1 using module from Challenge #2, into an AKS cluster (considering a preexisting resource group and cluster name)
 
 
